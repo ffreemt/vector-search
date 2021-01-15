@@ -5,7 +5,7 @@ from .seg_text import seg_text
 from .sent_tokenizer import sent_tokenizer, _sent_tokenizer
 from .gen_tokens import gen_tokens, list_tokens
 
-__version__ = '0.1.0'
+__version__ = "0.1.0"
 
 # pylint: disable=invalid-name
 textsdir = Path(__file__).parent.parent / "texts"

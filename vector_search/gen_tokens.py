@@ -18,6 +18,7 @@ from pathlib import Path
 from joblib import Memory
 from polyglot.text import Detector
 from polyglot.detect.base import logger as polyglot_logger
+from varname import nameof
 from logzero import logger
 
 # from phrase_tokenizer import phrase_tok
@@ -44,6 +45,13 @@ def gen_tokens(
     """Genereate tokens from text/list of text."""
     if isinstance(text, str):
         text = [elm.strip() for elm in text.splitlines() if elm.strip()]
+
+    try:
+        label = label.strip()
+    except Exception:
+        label = ""
+    if not label.strip():
+        label = nameof(text)
 
     if lang is None:
         lang = Detector(" ".join(text)).language.code
