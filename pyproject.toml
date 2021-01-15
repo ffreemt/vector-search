@@ -11,6 +11,7 @@ repository = "https://github.com/ffreemt/vector-search"
 python = "^3.6.1"
 logzero = "^1.6.3"
 faiss-cpu = "^1.6.5"
+varname = "^0.5.6"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
