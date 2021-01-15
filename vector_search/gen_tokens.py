@@ -26,7 +26,7 @@ from .sent_tokenizer import _sent_tokenizer
 
 polyglot_logger.setLevel("ERROR")
 if os.environ.get("JLNOCACHE") is None:
-    _ = Path("~/joblib_cache").expanduser()
+    _ = Path("joblib_cache")
 else:
     _ = None  # no cache if JLNOCACHE is set for testing
 memory = Memory(location=_, verbose=0)
