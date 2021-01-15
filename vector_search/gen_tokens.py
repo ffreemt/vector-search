@@ -1,4 +1,5 @@
-"""Genereate tokens from text/list of text.
+"""
+Genereate tokens from text/list of text.
 
 dz ~/myapps/fastapi-s hlm-faiss.ipynb
 """

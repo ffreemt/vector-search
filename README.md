@@ -10,9 +10,9 @@ To install `libicu`
 ### For Linux/OSX
 
 E.g.
-* Ubuntu: `sudo apt install libicu-dev`
-* Centos: `yum install libicu`
-* OSX: `brew install icu4c`
+  * Ubuntu: `sudo apt install libicu-dev`
+  * Centos: `yum install libicu`
+  * OSX: `brew install icu4c`
 
 Then use `poetry` or `pip` to install ` PyICU pycld2 Morfessor`, e.g.
 ```bash
