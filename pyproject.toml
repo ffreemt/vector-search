@@ -3,6 +3,9 @@ name = "vector-search"
 version = "0.1.0"
 description = "vector search based on faiss (currently just flatl2 and flatip)"
 authors = ["ffreemt"]
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/ffreemt/vector-search"
 
 [tool.poetry.dependencies]
 python = "^3.6.1"
