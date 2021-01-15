@@ -17,6 +17,10 @@ tqdm = "^4.56.0"
 sentence-splitter = "^1.4"
 cchardet = "^2.1.7"
 polyglot = "^16.7.4"
+pyicu = "^2.6"
+pycld2 = "^0.41"
+numpy = "^1.19.5"
+morfessor = "^2.0.6"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
@@ -24,6 +28,10 @@ pylint = "^2.6.0"
 flake8 = "^3.8.4"
 pep257 = "^0.7.0"
 black = "^20.8b1"
+
+[[tool.poetry.source]]
+name = "tx"
+url = "http://mirrors.tencentyun.com/pypi/simple"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
