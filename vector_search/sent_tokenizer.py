@@ -1,5 +1,5 @@
 """Tokenize str|List[str] to sents."""
-# pylint: disable=unused-argument
+# pylint: disable=unused-argument, broad-except
 
 from typing import (
     List,

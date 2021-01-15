@@ -1,4 +1,5 @@
 """Load text with best effort to determine encoding."""
+# pylint: disable=broad-except
 
 from typing import Union
 from pathlib import Path

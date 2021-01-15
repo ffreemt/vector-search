@@ -3,6 +3,8 @@
 Use sentence_splitter if supported,
 else use polyglot.text.Text
 """
+# pylint: disable=broad-except
+
 from typing import List, Optional
 
 from tqdm.auto import tqdm

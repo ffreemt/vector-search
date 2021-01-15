@@ -2,7 +2,7 @@
 
 dz ~/myapps/fastapi-s hlm-faiss.ipynb
 """
-# pylint: disable=too-many-arguments
+# pylint: disable=too-many-arguments, broad-except
 
 from typing import (
     # Generator,
