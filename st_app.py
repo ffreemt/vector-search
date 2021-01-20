@@ -6,8 +6,8 @@ Based on st-bumblebee-aligner, to be deplyed on share.streamlit.io
 from typing import List
 
 from timeit import default_timer
-import base64
-from io import BytesIO
+# import base64
+# from io import BytesIO
 
 import numpy as np
 import pandas as pd
@@ -44,29 +44,31 @@ def seg_text(text: str, lang: str) -> List[str]:
 
 
 def split_text(text, sep='\n'):
+    """Split text."""
     if isinstance(text, bytes):
         text = text.decode("utf8")
     return [elm.strip() for elm in text.split(sep) if elm.strip()]
 
 
 @st.cache
-def bee_corr(text1, text2, url=None):
-    logger.debug('type: %s, text[:4]: %s', type(text1), text1[:10])
+def sent_embed(text1, url=None):
+    """Embed sents."""
     if isinstance(text1, str):
         text1 = split_text(text1)
-    if isinstance(text2, str):
-        text2 = split_text(text2)
+        logger.debug('type: %s, text[:4]: %s', type(text1), text1[:4])
     if url is None:
-        return fetch_sent_corr(text1, text2)
-    else:
-        return fetch_sent_corr(text1, text2, url=url)
+        return fetch_embed(text1)
+
+    return fetch_embed(text1, url=url)
 
 
 def front_cover():
-    global src_fileio, op_selectbox, model_url
+    """Front."""
+    # global src_fileio, op_selectbox, model_url
+
+    st.sidebar.title("streamlit powered semantic search (multilingual)")
 
     # st.sidebar.markdown("# web bumblebee aligner")
-    st.sidebar.title("streamlit powered semantic search multilingual")
     # st.sidebar.markdown("total # of paras limited to 300")
 
     # branch

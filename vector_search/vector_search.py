@@ -1,3 +1,4 @@
+"""Search vectors via faiss."""
 # embed = None Path("/home/ubuntu/myapps/fastapi-s/s_embed"
 
 from typing import (
@@ -16,7 +17,8 @@ import faiss
 from logzero import logger
 
 # define embd
-embed = ""
+# embed = ""
+from vector_search.fetch_embed import fetch_embed
 
 _ = Path(__file__).parent / "joblibcache"
 memory = Memory(location=_, verbose=0)
@@ -42,17 +44,21 @@ def faiss_flat_l2(encoded_data):
 
 
 @memory.cache
-def embed_data(data, embed=embed):
+def embed_data(data, embed=fetch_embed):
     """Embed data."""
     if isinstance(data, str):
         data = [data]
     with warnings.catch_warnings():
         warnings.simplefilter("ignore")
-        _ = embed(data)
+        try:
+            _ = embed(data)
+        except Exception as exc:
+            logger.error(exc)
+            raise
     return _
 
 
-#def msearch(
+# def msearch(
 # pylint: disable=too-many-arguments
 def vector_search(
     query_vector: Union[str, np.ndarray] = None,
@@ -84,7 +90,7 @@ def vector_search(
                 "You probably need to embed (encode) the list of str first."
                 "\n\t.e.g, embed(nameof(query_vector)). Exiting"
             )
-            raise SystemExist(1) from exc
+            raise SystemExit(1) from exc
     if encoded_data is None and data is None:
         logger.error("encoded_data and data cannot be None at the same time, exiting")
         return None
