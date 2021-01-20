@@ -21,6 +21,7 @@ pyicu = "^2.6"
 pycld2 = "^0.41"
 numpy = "^1.19.5"
 morfessor = "^2.0.6"
+sentence-transformers = "^0.4.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
@@ -28,6 +29,7 @@ pylint = "^2.6.0"
 flake8 = "^3.8.4"
 pep257 = "^0.7.0"
 black = "^20.8b1"
+ipython = "^7"
 
 [[tool.poetry.source]]
 name = "tx"
