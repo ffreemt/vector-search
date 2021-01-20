@@ -5,16 +5,17 @@ Based on st-bumblebee-aligner, to be deplyed on share.streamlit.io
 
 from typing import List
 
+from timeit import default_timer
+import base64
+from io import BytesIO
+
 import numpy as np
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 import streamlit as st
-import base64
-from io import BytesIO
 from polyglot.text import Detector, Text
 from sentence_splitter import split_text_into_sentences
-from timeit import default_timer
 
 import logzero
 from logzero import logger
