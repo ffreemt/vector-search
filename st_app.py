@@ -11,11 +11,12 @@ from timeit import default_timer
 # import base64
 # from io import BytesIO
 
+import streamlit as st
+from PIL import Image
 import numpy as np
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-import streamlit as st
 from polyglot.text import Detector, Text
 from sentence_splitter import split_text_into_sentences
 
@@ -71,6 +72,12 @@ def front_cover():
     st.sidebar.title(
         f"streamlit powered semantic search (multilingual) v{__version__}"
     )
+
+    img = Image.open("img/under_construction.jpg")
+    st.image(img, width=200)
+
+    st.write("(In progress...)")
+    st.write("repo https://github.com/ffreemt/vector-search/st_app.py")
 
     # st.sidebar.markdown("# web bumblebee aligner")
     # st.sidebar.markdown("total # of paras limited to 300")
