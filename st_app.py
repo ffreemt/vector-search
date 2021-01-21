@@ -165,14 +165,25 @@ def main():
     book_dict = dict(
         zip(book_titles, book_files)
     )
-    book_list = [*book_dict]
+    book_list = ["None", "All", ] + [*book_dict]
 
     #
     books_selected = st.multiselect(
         "Select books to search from: ",
-         book_list,
+        book_list,
+        default=["麦田守望者（施）", "麦田捕手（孙）",]
     )
-    st.write("You selected: ", books_selected)
+    if books_selected:
+        if books_selected in ["None", "All", ]:
+            if books_selected in ["None"]:
+                books_selected = []
+            else:
+                books_selected = [*book_dict]
+            st.write("You selected: ", books_selected)
+        else:
+            st.write("You selected: ", books_selected)
+    else:
+        st.write("You have not selected anything. Click the dropdown")
 
     back_cover()
 
