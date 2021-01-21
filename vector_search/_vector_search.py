@@ -26,7 +26,7 @@ memory = Memory(location=_, verbose=0)
 
 @memory.cache
 def faiss_flat_ip(encoded_data):
-    """Faiss flatip"""
+    """Faiss flatip."""
     dim = encoded_data.shape[1]
     index = faiss.IndexIDMap(faiss.IndexFlatIP(dim))
     faiss.normalize_L2(encoded_data)
@@ -77,22 +77,21 @@ def vector_search(
     if query_vector is None:
         _ = choices(["test", "测试"])
         logger.info("generated query: %s", _)
-        query_vector = embed(_)
-    if isinstance(query_vector, str):
-        query_vector = embed([query_vector])
+    if not isinstance(query_vector, list):
+        query_vector = [query_vector]
 
-    if isinstance(query_vector, list):
-        try:
-            query_vector = embed(query_vector)
-        except Exception as exc:
-            logger.error("exc: %s", exc)
-            logger.info(
-                "You probably need to embed (encode) the list of str first."
-                "\n\t.e.g, embed(nameof(query_vector)). Exiting"
-            )
-            raise SystemExit(1) from exc
+    try:
+        query_vector = embed(query_vector)
+    except Exception as exc:
+        logger.error("exc: %s", exc)
+        logger.info(
+            "You probably need to create a list of str first."
+            "\n\t.e.g, embed(nameof(query_vector)). Exiting"
+        )
+        raise SystemExit(1) from exc
+
     if encoded_data is None and data is None:
-        logger.error("encoded_data and data cannot be None at the same time, exiting")
+        logger.error("encoded_data/data None at the same time, exiting")
         return None
 
     if encoded_data is None:

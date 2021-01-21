@@ -33,7 +33,9 @@ def _sent_tokenizer(
         try:
             lang = Detector(" ".join(text)).language.code
         except Exception as exc:
-            logger.warning("polyglot.text.Detector exc: %s, setting to 'en'", exc)
+            logger.warning(
+                "polyglot.text.Detector exc: %s, setting to 'en'", exc
+            )
             logger.info(" Try to pass lang (e.g. lang='en') to sent_tokenizer")
             lang = 'en'
 

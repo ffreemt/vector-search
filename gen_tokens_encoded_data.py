@@ -11,7 +11,7 @@ from vector_search import load_text, list_tokens
 
 
 def main():
-    """main"""
+    """main."""
     repl = [('catcher-in-the-rye', 'citr'), ('sunzhongxu', 'sun'), ('shixianrong', 'shi')]
     # reduce(lambda x, y: x.replace(y[0], y[1]), repl,
     # "catcher-in-the-rye-en") -> citr-en

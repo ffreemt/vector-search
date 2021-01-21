@@ -74,6 +74,7 @@ def gen_tokens(
                 # for phrase in phrase_tok(sent):
                 # yield phrase, label, idx + 1, 'phra'
 
+
 @memory.cache
 # fmt: off
 def list_tokens(

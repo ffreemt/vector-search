@@ -26,7 +26,7 @@ memory = Memory(location=_, verbose=0)
 
 @memory.cache
 def faiss_flat_ip(encoded_data):
-    """Faiss flatip"""
+    """Faiss flatip."""
     dim = encoded_data.shape[1]
     index = faiss.IndexIDMap(faiss.IndexFlatIP(dim))
     faiss.normalize_L2(encoded_data)
@@ -70,16 +70,14 @@ def vector_search(
     topk: int = 5,
 ) -> Optional[Tuple[np.ndarray, np.ndarray]]:
     """Search via faiss."""
-
     if embed is None:
         embed = fetch_embed
 
     if query_vector is None:
         _ = choices(["test", "测试"])
         logger.info("generated query: %s", _)
-        query_vector = embed(_)
     if isinstance(query_vector, str):
-        query_vector = embed([query_vector])
+        query_vector = list(query_vector)
 
     if isinstance(query_vector, list):
         try:

@@ -36,7 +36,7 @@ LANG_S = ["ca", "cs", "da", "nl", "en", "fi", "fr", "de",
 
 
 def seg_text(text: str, lang: str) -> List[str]:
-    """ split text to sentences.
+    """split text to sentences.
 
     use sentence_splitter if supported,
     else use polyglot.text.Text
@@ -141,7 +141,6 @@ def back_cover():
 
 def main():
     """Main."""
-
     pd.set_option('precision', 2)
     pd.options.display.float_format = '{:,.2f}'.format
 
@@ -192,6 +191,7 @@ def main():
     back_cover()
 
     # st.write(src_fileio.name)
+    return None
 
 
 main()

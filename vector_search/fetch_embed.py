@@ -1,8 +1,8 @@
-""" fetch doc/para/send corr matrix from fastai server. """
+"""fetch doc/para/send corr matrix from fastai server."""
 
 from typing import List, Optional, Union
 
-import numpy as np
+# import numpy as np
 import httpx
 import logzero
 from logzero import logger
@@ -29,7 +29,6 @@ def fetch_embed(
     >>> res[0] == res[1]
     True
     """
-
     if isinstance(sents1, str):
         sents1 = [sents1]
 

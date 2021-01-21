@@ -49,7 +49,9 @@ def seg_text(
         try:
             lang = Detector(text).language.code
         except Exception as exc:
-            logger.warning("polyglot.text.Detector exc: %s, setting to 'en'", exc)
+            logger.warning(
+                "polyglot.text.Detector exc: %s, setting to 'en'", exc
+            )
             lang = "en"
 
     if not qmode and lang in LANG_S:
