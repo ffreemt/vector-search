@@ -174,14 +174,12 @@ def main():
         default=["麦田守望者（施）", "麦田捕手（孙）",]
     )
     if books_selected:
-        if books_selected in ["None", "All", ]:
-            if books_selected in ["None"]:
-                books_selected = []
-            else:
-                books_selected = [*book_dict]
+        if "None" in books_selected:
+            books_selected = []
+        elif "All" in books_selected:
+            books_selected = [*book_dict]
             st.write("You selected: ", books_selected)
-        else:
-            st.write("You selected: ", books_selected)
+        st.write("You selected: ", books_selected)
     else:
         st.write("You have not selected anything. Click the dropdown")
 
