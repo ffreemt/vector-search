@@ -61,8 +61,8 @@ def embed_data(data, embed=fetch_embed):
 # def msearch(
 # pylint: disable=too-many-arguments
 def vector_search(
-    query_vector: Union[str, np.ndarray],
-    data: List[str],
+    query_vector: Union[str, np.ndarray] = None,
+    data: Optional[List[str]] = None,
     encoded_data: Optional[np.ndarray] = None,
     embed: Optional[Callable] = None,  # embed_data
     index_: str = "",  # default to indexflatl2
@@ -70,9 +70,9 @@ def vector_search(
     topk: int = 5,
 ) -> Optional[Tuple[np.ndarray, np.ndarray]]:
     """Search via faiss."""
-
     if embed is None:
-        embed = fetch_embed
+        logger.error("Must pass a callable to embed, exiting")
+        return None
 
     if query_vector is None:
         _ = choices(["test", "测试"])
@@ -91,6 +91,9 @@ def vector_search(
                 "\n\t.e.g, embed(nameof(query_vector)). Exiting"
             )
             raise SystemExit(1) from exc
+    if encoded_data is None and data is None:
+        logger.error("encoded_data and data cannot be None at the same time, exiting")
+        return None
 
     if encoded_data is None:
         encoded_data = embed(data)
