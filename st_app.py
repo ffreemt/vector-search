@@ -170,7 +170,7 @@ def main():
 
     #
     books_selected = st.multiselect(
-        "Select books to search from: ",
+        f"Select books to search from: {book_list}",
         book_list,
         default=["麦田守望者（施）", "麦田捕手（孙）",]
     )
@@ -183,6 +183,11 @@ def main():
     else:
         st.write("You have not selected anything. Click the dropdown")
         return None
+
+    if not books_selected:
+        return None
+
+    st.info(books_selected)
 
     back_cover()
 
