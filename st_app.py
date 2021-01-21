@@ -77,7 +77,8 @@ def front_cover():
     img = Image.open("img/under_construction.jpg")
     st.image(img, width=200)
 
-    st.write("(In progress...)")
+    # st.write("(In progress...)")
+    st.warning("(In progress...)")
     st.write("repo https://github.com/ffreemt/vector-search")
 
     # st.sidebar.markdown("# web bumblebee aligner")
@@ -174,10 +175,10 @@ def main():
         default=["麦田守望者（施）", "麦田捕手（孙）",]
     )
     if books_selected:
-        if "None" in books_selected:
-            books_selected = []
-        elif "All" in books_selected:
+        if "All" in books_selected[-1:]:
             books_selected = [*book_dict]
+        elif "None" in books_selected[-1:]:
+            books_selected = []
             st.write("You selected: ", books_selected)
         st.write("You selected: ", books_selected)
     else:
