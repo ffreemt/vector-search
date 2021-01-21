@@ -16,8 +16,8 @@ import streamlit as st
 from PIL import Image
 import numpy as np
 import pandas as pd
-import seaborn as sns
-import matplotlib.pyplot as plt
+# import seaborn as sns
+# import matplotlib.pyplot as plt
 from polyglot.text import Detector, Text
 from sentence_splitter import split_text_into_sentences
 
