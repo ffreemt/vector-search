@@ -70,28 +70,31 @@ def vector_search(
     topk: int = 5,
 ) -> Optional[Tuple[np.ndarray, np.ndarray]]:
     """Search via faiss."""
+
     if embed is None:
         embed = fetch_embed
+
+    if encoded_data is None:
+        encoded_data = embed(data)
 
     if query_vector is None:
         _ = choices(["test", "测试"])
         logger.info("generated query: %s", _)
     if isinstance(query_vector, str):
-        query_vector = list(query_vector)
+        query_vector = embed(query_vector)
 
-    if isinstance(query_vector, list):
+    if not isinstance(query_vector, np.ndarray):
+        logger.info(
+            "You probably need to embed (encode) the list of str first."
+            "\n\t.e.g, embed(nameof(query_vector)). Exiting"
+        )
+        raise SystemExit(1)
+    else:
         try:
-            query_vector = embed(query_vector)
+            assert query_vector.shape[1] == encoded_data[1]
         except Exception as exc:
-            logger.error("exc: %s", exc)
-            logger.info(
-                "You probably need to embed (encode) the list of str first."
-                "\n\t.e.g, embed(nameof(query_vector)). Exiting"
-            )
-            raise SystemExit(1) from exc
-
-    if encoded_data is None:
-        encoded_data = embed(data)
+            logger.error(exc)
+            raise SystemExit(1)
 
     if index_.lower() in ["indexflat_ip", "flat_ip", "flatip"]:
         index = faiss_flat_ip(encoded_data)

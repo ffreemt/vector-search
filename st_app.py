@@ -205,6 +205,11 @@ def main():
     tokens = [*chain.from_iterable([load(elm) for elm in token_files])]  # 1.3s
     encoded = [*chain.from_iterable([load(elm) for elm in encoded_files])]  # 9 sec
 
+    tokens = np.array(tokens)
+    encoded = np.array(encoded)
+
+    _ = vector_search("test", tokens, encoded)
+
     back_cover()
 
     # st.write(src_fileio.name)
