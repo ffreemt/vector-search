@@ -133,7 +133,7 @@ tzlocal==2.1
 urllib3==1.26.2
 validators==0.18.2
 varname==0.5.6
-vector-search==0.1.0
+# vector-search==0.1.0
 watchdog==1.0.2
 wcwidth==0.2.5
 webencodings==0.5.1
