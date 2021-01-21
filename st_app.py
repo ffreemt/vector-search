@@ -7,6 +7,7 @@ __version__ = "0.1.0"
 
 from typing import List
 
+from pathlib import Path
 from timeit import default_timer
 # import base64
 # from io import BytesIO
@@ -129,7 +130,7 @@ def instruction1():
 def back_cover():
     """Endnotes."""
     st.markdown(
-        "--- \n* use the left sidebar to navigate\n* "
+        "--- \n* Use the left sidebar to navigate\n* "
         f"semantic search (multilingual) v{__version__} from mu@qq41947782's "
         "keyboard in "
         "cyberspace. Join **qq group 316287378** for feedback and "
@@ -137,14 +138,41 @@ def back_cover():
     )
 
 
-pd.set_option('precision', 2)
-pd.options.display.float_format = '{:,.2f}'.format
-
-
 def main():
     """Main."""
 
+    pd.set_option('precision', 2)
+    pd.options.display.float_format = '{:,.2f}'.format
+
     front_cover()
+
+    book_titles = [
+        "The Catcher in the Rye",
+        "麦田守望者（施）",
+        "麦田捕手（孙）",
+        "芳芳日记（英）",
+        "芳芳日记",
+    ]
+    book_dir = Path("texts").resolve()
+    book_files = [
+        "catcher-in-the-rye-en.txt",
+        "catcher-in-the-rye-shixianrong-zh.txt",
+        "catcher-in-the-rye-sunzhongxu-zh.txt",
+        "fangfang-en.txt",
+        "fangfang-zh.txt",
+    ]
+    book_files = [*Path("texts").glob("*.txt")]
+    book_dict = dict(
+        zip(book_titles, book_files)
+    )
+    book_list = [*book_dict]
+
+    #
+    books_selected = st.multiselect(
+        "Select books to search from: ",
+         book_list,
+    )
+    st.write("You selected: ", books_selected)
 
     back_cover()
 
