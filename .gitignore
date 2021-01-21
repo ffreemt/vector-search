@@ -139,3 +139,4 @@ cython_debug/
 *.bat
 joblib_cache
 .gitignore
+*.swp
