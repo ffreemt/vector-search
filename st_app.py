@@ -179,10 +179,10 @@ def main():
             books_selected = [*book_dict]
         elif "None" in books_selected[-1:]:
             books_selected = []
-            st.write("You selected: ", books_selected)
         st.write("You selected: ", books_selected)
     else:
         st.write("You have not selected anything. Click the dropdown")
+        return None
 
     back_cover()
 
