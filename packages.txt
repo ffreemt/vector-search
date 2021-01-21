@@ -1,2 +1,5 @@
 libicu-dev
+icu-devtools
+icu-doc
 pkg-config
+apt-utils
