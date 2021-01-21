@@ -2,7 +2,7 @@
 
 from typing import List, Optional, Union
 
-# import numpy as np
+import numpy as np
 import httpx
 import logzero
 from logzero import logger
@@ -55,4 +55,4 @@ def fetch_embed(
         jdata.update({"embed": [[0]]})
         raise
 
-    return jdata.get("embed")
+    return np.array(jdata.get("embed")).astype("float32")
