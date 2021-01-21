@@ -3,6 +3,8 @@
 Based on st-bumblebee-aligner, to be deplyed on share.streamlit.io
 """
 
+__version__ = "0.1.0"
+
 from typing import List
 
 from timeit import default_timer
@@ -66,7 +68,9 @@ def front_cover():
     """Front."""
     # global src_fileio, op_selectbox, model_url
 
-    st.sidebar.title("streamlit powered semantic search (multilingual)")
+    st.sidebar.title(
+        f"streamlit powered semantic search (multilingual) v{__version__}"
+    )
 
     # st.sidebar.markdown("# web bumblebee aligner")
     # st.sidebar.markdown("total # of paras limited to 300")
@@ -119,7 +123,7 @@ def back_cover():
     """Endnotes."""
     st.markdown(
         "--- \n* use the left sidebar to navigate\n* "
-        "semantic search (multilingual) v.0.1.0 from mu@qq41947782's "
+        f"semantic search (multilingual) v{__version__} from mu@qq41947782's "
         "keyboard in "
         "cyberspace. Join **qq group 316287378** for feedback and "
         "questions or to be kept updated. "
