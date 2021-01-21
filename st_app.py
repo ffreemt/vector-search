@@ -9,6 +9,7 @@ from typing import List
 
 from pathlib import Path
 from timeit import default_timer
+from itertools import chain
 # import base64
 # from io import BytesIO
 
@@ -26,6 +27,7 @@ from logzero import logger
 
 # from bee_aligner.fetch_sent_corr import fetch_sent_corr
 from vector_search.fetch_embed import fetch_embed
+from vector_search.vector_search import vector_search
 
 logzero.loglevel(20)
 
@@ -187,6 +189,21 @@ def main():
         return None
 
     st.info(books_selected)
+    files_selected = [book_dict[elm] for elm in books_selected]
+    files_stem = [elm.stem for elm in files_selected]
+    # ['catcher-in-the-rye-shixianrong-zh', 'catcher-in-the-rye-sunzhongxu-zh']
+
+    token_files = [Path("data") / (elm + ".lzma") for elm in files_stem]
+
+    encoded_files = [Path("data") / (elm + "-encoded.lzma") for elm in files_stem]
+
+    # np.all([*map(lambda x: x.is_file(), token_files)])
+    # np.all([*map(lambda x: x.is_file(), encoded_files)])
+
+    # tokens = []
+    # for elm in token_files: tokens.extend(load(elm))
+    tokens = [*chain.from_iterable([load(elm) for elm in token_files])]  # 1.3s
+    encoded = [*chain.from_iterable([load(elm) for elm in encoded_files])]  # 9 sec
 
     back_cover()
 
