@@ -77,7 +77,7 @@ def front_cover():
     st.image(img, width=200)
 
     st.write("(In progress...)")
-    st.write("repo https://github.com/ffreemt/vector-search/st_app.py")
+    st.write("repo https://github.com/ffreemt/vector-search")
 
     # st.sidebar.markdown("# web bumblebee aligner")
     # st.sidebar.markdown("total # of paras limited to 300")
