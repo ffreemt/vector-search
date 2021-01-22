@@ -1,6 +1,6 @@
 # first line: 37
 @memory.cache
-def faiss_flat_l2(encoded_data):
+def faiss_flat_l2(encoded_data: np.ndarray):
     """Faiss flatl2."""
     dim = encoded_data.shape[1]
     index = faiss.IndexFlatL2(dim)
