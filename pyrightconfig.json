@@ -1,0 +1,8 @@
+{
+    "venvPath": ".venv",
+
+    "reportTypeshedErrors": false,
+    "reportMissingImports": true,
+    "reportMissingTypeStubs": false,
+    "ignore": ["./joblib_cache/", "./joblib_cache/joblib/", "./vector_search/joblibcache/", "./vector_search/joblibcache/joblib/", "./.venv/"]
+}

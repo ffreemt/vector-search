@@ -25,7 +25,7 @@ memory = Memory(location=_, verbose=0)
 
 
 @memory.cache
-def faiss_flat_ip(encoded_data):
+def faiss_flat_ip(encoded_data: np.ndarray):
     """Faiss flatip."""
     dim = encoded_data.shape[1]
     index = faiss.IndexIDMap(faiss.IndexFlatIP(dim))
@@ -35,7 +35,7 @@ def faiss_flat_ip(encoded_data):
 
 
 @memory.cache
-def faiss_flat_l2(encoded_data):
+def faiss_flat_l2(encoded_data: np.ndarray):
     """Faiss flatl2."""
     dim = encoded_data.shape[1]
     index = faiss.IndexFlatL2(dim)
@@ -63,7 +63,7 @@ def embed_data(data, embed=fetch_embed):
 def vector_search(
     query_vector: Union[str, np.ndarray],
     data: List[str],
-    encoded_data: Optional[np.ndarray] = None,
+    encoded_data: np.ndarray = np.ndarray([0]),
     embed: Optional[Callable] = None,  # embed_data
     index_: str = "",  # default to indexflatl2, or indexflatip
     sanity_check: Union[bool, int] = False,
@@ -77,29 +77,29 @@ def vector_search(
     if encoded_data is None:
         encoded_data = embed(data)
 
-    if query_vector is None:
-        _ = choices(["test", "测试"])
-        logger.info("generated query: %s", _)
     if isinstance(query_vector, str):
-        query_vector = embed(query_vector)
+        query_vector = fetch_embed(query_vector)
 
-    if not isinstance(query_vector, np.ndarray):
+    if isinstance(query_vector, np.ndarray):
+        try:
+            _ = np.ndarray(query_vector)
+            assert _.shape[1] == encoded_data.shape[1]
+            query_vector = _
+        except Exception as exc:
+            logger.error(exc)
+            raise SystemExit(exc) from exc
+    else:
         logger.info(
             "You probably need to embed (encode) the list of str first."
             "\n\t.e.g, embed(nameof(query_vector)). Exiting"
         )
         try:
-            query_vector = np.array(query_vector).astype("float16")
-            assert query_vector.shape[1] == encoded_data.shape[1]
+            _ = np.array(query_vector).astype("float16")
+            assert _.shape[1] == encoded_data.shape[1]
+            query_vector = _
         except Exception as exc:
             logger.error(exc)
-            raise SystemExit(1)
-    else:
-        try:
-            assert query_vector.shape[1] == encoded_data.shape[1]
-        except Exception as exc:
-            logger.error(exc)
-            raise SystemExit(exc)
+            raise SystemExit(1) from exc
 
     if index_.lower() in ["indexflat_ip", "flat_ip", "flatip", "flat-ip", "indexflat-ip"]:
         index = faiss_flat_ip(encoded_data)

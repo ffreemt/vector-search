@@ -1,6 +1,6 @@
 """fetch doc/para/send corr matrix from fastai server."""
 
-from typing import List, Optional, Union
+from typing import List, Union
 
 import numpy as np
 import httpx
@@ -18,7 +18,7 @@ URL = "http://216.24.255.63:8008/embed"
 def fetch_embed(
         sents1: Union[str, List[str]],
         url: str = URL,
-) -> Optional[List[List[str]]]:
+) -> np.ndarray:
     # fmt: on
     """Fetch doc/para/send embedding from fastai server.
 
