@@ -94,7 +94,8 @@ def vector_search(
             "\n\t.e.g, embed(nameof(query_vector)). Exiting"
         )
         try:
-            _ = np.array(query_vector).astype("float16")
+            _ = fetch_embed(query_vector)
+            # _ = np.array().astype("float16")
             assert _.shape[1] == encoded_data.shape[1]
             query_vector = _
         except Exception as exc:
