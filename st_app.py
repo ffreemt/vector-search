@@ -225,6 +225,8 @@ def main():
 
     index_ = st.radio("Select type: ", ("flat-l2 (distance)", "flat-ip (cosine)"))
 
+    st.info("index: ", index_)
+
     label = "Paste some sentenes here: "
     max_chars = 1000
     text = st.text_area(label, value='', height=None, max_chars=max_chars, key=None)
