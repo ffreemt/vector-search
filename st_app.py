@@ -236,6 +236,8 @@ def main():
 
     sents
 
+    "+".join(sents)
+
     st.write(text, sents)
 
     _ = vector_search(sents, tokens, encoded, index_=index_)
