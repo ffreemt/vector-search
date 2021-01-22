@@ -1,3 +1,4 @@
+faiss
 altair==4.1.0
 anytree==2.8.0
 appdirs==1.4.4
