@@ -117,7 +117,7 @@ setuptools==49.6.0
 six==1.15.0
 smmap==3.0.4
 sniffio==1.2.0
-streamlit==0.74.1
+streamlit
 terminado==0.9.2
 testpath==0.4.4
 threadpoolctl==2.1.0
