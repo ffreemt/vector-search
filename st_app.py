@@ -17,6 +17,8 @@ import streamlit as st
 from PIL import Image
 import numpy as np
 import pandas as pd
+from joblib import load
+
 # import seaborn as sns
 # import matplotlib.pyplot as plt
 from polyglot.text import Detector, Text
