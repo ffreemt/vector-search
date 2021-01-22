@@ -234,6 +234,8 @@ def main():
     except Exception as exc:
         sents = [str(exc)]
 
+    sents
+
     st.write(text, sents)
 
     _ = vector_search(sents, tokens, encoded, index_=index_)
