@@ -65,7 +65,7 @@ def vector_search(
     data: List[str],
     encoded_data: Optional[np.ndarray] = None,
     embed: Optional[Callable] = None,  # embed_data
-    index_: str = "",  # default to indexflatl2
+    index_: str = "",  # default to indexflatl2, or indexflatip
     sanity_check: Union[bool, int] = False,
     topk: int = 5,
 ) -> Optional[Tuple[np.ndarray, np.ndarray]]:
@@ -101,7 +101,7 @@ def vector_search(
             logger.error(exc)
             raise SystemExit(exc)
 
-    if index_.lower() in ["indexflat_ip", "flat_ip", "flatip"]:
+    if index_.lower() in ["indexflat_ip", "flat_ip", "flatip", "flat-ip", "indexflat-ip"]:
         index = faiss_flat_ip(encoded_data)
     else:  # index_.lower() in ["indexflatl2", "flat_l2", "flatl2"]
         index = faiss_flat_l2(encoded_data)

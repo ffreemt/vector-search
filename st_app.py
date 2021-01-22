@@ -1,11 +1,16 @@
-"""Demo faiss semantic search multilingual.
+"""Demo faiss semantic search (multilingual).
 
-Based on st-bumblebee-aligner, to be deplyed on share.streamlit.io
+Based on st-bumblebee-aligner, to be deployed on share.streamlit.io
 """
+# pylint:
 
 __version__ = "0.1.0"
 
-from typing import List
+from typing import (
+    List,
+    Optional,
+    Union,
+)
 
 from pathlib import Path
 from timeit import default_timer
@@ -39,12 +44,19 @@ LANG_S = ["ca", "cs", "da", "nl", "en", "fi", "fr", "de",
           "pt", "ro", "ru", "sk", "sl", "es", "sv", "tr"]
 
 
-def seg_text(text: str, lang: str) -> List[str]:
+# global
+query = ""  # type: Union[str, List[str]]
+
+
+def seg_text(text: str, lang: Optional[str] = None) -> List[str]:
     """split text to sentences.
 
     use sentence_splitter if supported,
     else use polyglot.text.Text
     """
+    if lang is None:
+        lang = Detector("testt 12 3").language.code
+
     if lang in LANG_S:
         return split_text_into_sentences(text, lang)
 
@@ -209,8 +221,15 @@ def main():
 
     tokens = np.array(tokens)
     encoded = np.array(encoded)
-
-    _ = vector_search("test", tokens, encoded)
+    
+    label = "Paste some sentenes here: "
+    max_chars = 1000
+    text = st.text_area(label, value='', height=None, max_chars=max_chars, key=None)
+    
+    index_ = st.radio("Select type: ", ("flat-l2 (distance)", "flat-ip (cosine)"))
+    
+    _ = vector_search("test", tokens, encoded, index_=index_)
+    _
 
     back_cover()
 
