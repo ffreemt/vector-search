@@ -94,7 +94,7 @@ def vector_search(
             assert query_vector.shape[1] == encoded_data[1]
         except Exception as exc:
             logger.error(exc)
-            raise SystemExit(1)
+            raise SystemExit(exc)
 
     if index_.lower() in ["indexflat_ip", "flat_ip", "flatip"]:
         index = faiss_flat_ip(encoded_data)
