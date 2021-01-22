@@ -225,10 +225,12 @@ def main():
 
     index_ = st.radio("Select type: ", ("flat-l2 (distance)", "flat-ip (cosine)"))
 
+    index_ = index_[:7]  # flat-l2 or flat-ip
+
     logger.info(index_)
     st.info(index_)
 
-    label = "Paste some sentenes here: "
+    label = "Paste or type some sentenes here (press Ctrl-Enter to send): "
     max_chars = 1000
     text = st.text_area(label, value='', height=None, max_chars=max_chars, key=None)
 
