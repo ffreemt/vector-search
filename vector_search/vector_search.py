@@ -82,12 +82,12 @@ def vector_search(
 
     if isinstance(query_vector, np.ndarray):
         try:
-            _ = np.ndarray(query_vector)
-            assert _.shape[1] == encoded_data.shape[1]
-            query_vector = _
-        except Exception as exc:
-            logger.error(exc)
-            raise SystemExit(exc) from exc
+            assert query_vector.shape[1] == encoded_data.shape[1]
+        except AssertionError as exc:
+            raise SystemExit(
+                "dimentions query vector and vectors in "
+                "database dimensions do not match"
+            ) from exc
     else:
         logger.info(
             "You probably need to embed (encode) the list of str first."
@@ -101,7 +101,9 @@ def vector_search(
             logger.error(exc)
             raise SystemExit(1) from exc
 
-    if index_.lower() in ["indexflat_ip", "flat_ip", "flatip", "flat-ip", "indexflat-ip"]:
+    if index_.lower() in [
+        "indexflat_ip", "flat_ip", "flatip", "flat-ip", "indexflat-ip"
+    ]:
         index = faiss_flat_ip(encoded_data)
     else:  # index_.lower() in ["indexflatl2", "flat_l2", "flatl2"]
         index = faiss_flat_l2(encoded_data)
