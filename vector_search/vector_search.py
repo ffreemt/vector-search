@@ -88,10 +88,15 @@ def vector_search(
             "You probably need to embed (encode) the list of str first."
             "\n\t.e.g, embed(nameof(query_vector)). Exiting"
         )
-        raise SystemExit(1)
+        try:
+            query_vector = np.array(query_vector).astype("float16")
+            assert query_vector.shape[1] == encoded_data.shape[1]
+        except Exception as exc:
+            logger.error(exc)
+            raise SystemExit(1)
     else:
         try:
-            assert query_vector.shape[1] == encoded_data[1]
+            assert query_vector.shape[1] == encoded_data.shape[1]
         except Exception as exc:
             logger.error(exc)
             raise SystemExit(exc)
