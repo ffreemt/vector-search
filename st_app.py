@@ -221,14 +221,22 @@ def main():
 
     tokens = np.array(tokens)
     encoded = np.array(encoded)
-    
+
+
+    index_ = st.radio("Select type: ", ("flat-l2 (distance)", "flat-ip (cosine)"))
+
     label = "Paste some sentenes here: "
     max_chars = 1000
     text = st.text_area(label, value='', height=None, max_chars=max_chars, key=None)
-    
-    index_ = st.radio("Select type: ", ("flat-l2 (distance)", "flat-ip (cosine)"))
-    
-    _ = vector_search("test", tokens, encoded, index_=index_)
+
+    try:
+        sents = seg_text(text)
+    except Exception as exc:
+        sents = [str(exc)]
+
+    st.write(text, sents)
+
+    _ = vector_search(sents, tokens, encoded, index_=index_)
     _
 
     back_cover()
