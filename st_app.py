@@ -236,7 +236,7 @@ def main():
 
     sents
 
-    "+".join(sents)
+    st.info("+".join(sents))
 
     st.write(text, sents)
 
