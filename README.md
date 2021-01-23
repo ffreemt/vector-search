@@ -38,7 +38,7 @@ Point your browser then to [http://127.0.0.1:8501](http://127.0.0.1:8501)
 
 ## For Developers
 
-`vector_search` can be used to conduct similarity search of other types of vectors such as image as long as the `embed` method is appropriately implemented. The vectors in the `data` directory and `fecth_embed` are implemented via some document embedding for text.
+`vector_search` can be used to conduct similarity search of other types of vectors such as image as long as the `embed` method is appropriately implemented. The vectors in the `data` directory and `fecth_embed` are implemented via some document embedding algorithm for text.
 
 ## Final Note
 
