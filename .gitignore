@@ -139,8 +139,4 @@ cython_debug/
 *.bat
 joblib_cache
 
-<<<<<<< HEAD
-data
-=======
 *.swp
->>>>>>> 7620b94f02e89ba33853d617d58f8b9b429c8bdc
