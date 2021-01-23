@@ -148,7 +148,7 @@ def instruction1():
 def back_cover():
     """Endnotes."""
     st.markdown(
-        "--- \n* Use the left sidebar to navigate\n* "
+        # "--- \n* Use the left sidebar to navigate\n* "
         f"semantic search (multilingual) v{__version__} from mu@qq41947782's "
         "keyboard in "
         "cyberspace. Join **qq group 316287378** for feedback and "
