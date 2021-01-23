@@ -28,14 +28,17 @@ def main():
         raise SystemExit(1) from exc
 
     for file in tqdm(files):
-        _ = load_text(file)
         label = label_dict[file]
-        _ = list_tokens(_.splitlines(), label)
-        dump(_, (data_dir / file.stem).as_posix() + ".lzma")
+        destfile = (data_dir / file.stem).as_posix() + ".lzma"
+        if not Path(destfile).exists():
+            print(destfile, label)
+            _ = load_text(file)
+            _ = list_tokens(_.splitlines(), label)
+            dump(_, destfile)
 
         # list_tokens(load_text(files[0]).splitlines(), 'citr-en')
         # joblib.load(data_dir / file.stem).as_posix() + ".lzma")
-        
+
 
 if __name__ == "__main__":
     main()
