@@ -164,6 +164,7 @@ def main():  # pylint: disable=too-many-locals
     front_cover()
 
     book_titles = [
+        "Der Fanger im Roggen (Boll)",
         "The Catcher in the Rye",
         "麦田守望者（施）",
         "麦田捕手（孙）",
@@ -172,6 +173,7 @@ def main():  # pylint: disable=too-many-locals
     ]
     book_dir = Path("texts").resolve()  # noqa
     book_files = [
+        "catcher-in-the-rye-boll-de.txt",
         "catcher-in-the-rye-en.txt",
         "catcher-in-the-rye-shixianrong-zh.txt",
         "catcher-in-the-rye-sunzhongxu-zh.txt",
@@ -206,6 +208,10 @@ def main():  # pylint: disable=too-many-locals
     st.info(books_selected)
     files_selected = [book_dict[elm] for elm in books_selected]
     files_stem = [elm.stem for elm in files_selected]
+    
+    st.write("Files selected:")
+    st.info(files_stem)
+    
     # ['catcher-in-the-rye-shixianrong-zh', 'catcher-in-the-rye-sunzhongxu-zh']
 
     token_files = [Path("data") / (elm + ".lzma") for elm in files_stem]
