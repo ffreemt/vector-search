@@ -1,6 +1,6 @@
 # first line: 27
 @memory.cache
-def faiss_flat_ip(encoded_data):
+def faiss_flat_ip(encoded_data: np.ndarray):
     """Faiss flatip."""
     dim = encoded_data.shape[1]
     index = faiss.IndexIDMap(faiss.IndexFlatIP(dim))

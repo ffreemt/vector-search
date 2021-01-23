@@ -2,7 +2,8 @@
 
 Based on st-bumblebee-aligner, to be deployed on share.streamlit.io
 """
-# pylint:
+# pylint: disable=pointless-statement
+# pylint: disable=invalid-name, broad-except
 
 __version__ = "0.1.0"
 
@@ -13,7 +14,7 @@ from typing import (
 )
 
 from pathlib import Path
-from timeit import default_timer
+# from timeit import default_timer
 from itertools import chain
 # import base64
 # from io import BytesIO
@@ -155,7 +156,7 @@ def back_cover():
     )
 
 
-def main():
+def main():  # pylint: disable=too-many-locals
     """Main."""
     pd.set_option('precision', 2)
     pd.options.display.float_format = '{:,.2f}'.format
@@ -169,7 +170,7 @@ def main():
         "芳芳日记（英）",
         "芳芳日记",
     ]
-    book_dir = Path("texts").resolve()
+    book_dir = Path("texts").resolve()  # noqa
     book_files = [
         "catcher-in-the-rye-en.txt",
         "catcher-in-the-rye-shixianrong-zh.txt",
@@ -187,7 +188,7 @@ def main():
     books_selected = st.multiselect(
         f"Select books to search from: {book_list}",
         book_list,
-        default=["麦田守望者（施）", "麦田捕手（孙）",]
+        default=["麦田守望者（施）", "麦田捕手（孙）", ]
     )
     if books_selected:
         if "All" in books_selected[-1:]:
@@ -222,13 +223,12 @@ def main():
     tokens = np.array(tokens)
     encoded = np.array(encoded)
 
-
     index_ = st.radio("Select type: ", ("flat-l2 (distance)", "flat-ip (cosine)"))
 
     index_ = index_[:7]  # flat-l2 or flat-ip
 
     logger.info(index_)
-    st.info(index_)
+    # st.info(index_)
 
     label = "Paste or type some sentenes here (press Ctrl-Enter to send): "
     max_chars = 1000
@@ -239,14 +239,34 @@ def main():
     except Exception as exc:
         sents = [str(exc)]
 
-    sents
+    # st.info("text")
+    # st.write(text)
+    st.info("sents")
+    st.write(sents)
 
-    st.info("+".join(sents))
+    if not []:
+        return None
+    try:
+        _ = vector_search(sents, tokens, encoded, index_=index_)
+    except Exception as exc:
+        st.error(str(exc))
+        return None
 
-    st.write(text, sents)
+    # _
+    # _[0]
+    # _[1]
 
-    _ = vector_search(sents, tokens, encoded, index_=index_)
-    _
+    # _ = pd.DataFrame(_[0])
+
+    for sent, dis, ind in zip(sents, _[0], _[1]):
+        st.info(sent)
+        # st.info(dis)
+        # st.info(ind)
+        df = pd.DataFrame(
+            {"dist or cos": dis,
+             "results": [tokens[int(idx)] for idx in ind]}
+        )
+        st.write(df)
 
     back_cover()
 
