@@ -11,7 +11,6 @@ To install `libicu`
 
 E.g.
 *   Ubuntu: `sudo apt install libicu-dev`
-*   Centos: `yum install libicu`
 *   OSX: `brew install icu4c`
 
 Then use `poetry` or `pip` to install ` PyICU pycld2 Morfessor`, e.g.
@@ -24,7 +23,22 @@ poetry add PyICU pycld2 Morfessor
 ```
 ### For Windows
 
-Download and install the `pyicu` and `pycld2` (possibly also `Morfessor`) whl packages for your OS/Python version from https://www.lfd.uci.edu/~gohlke/pythonlibs/#pyicu and https://www.lfd.uci.edu/~gohlke/pythonlibs/#pycld2 (possibly also Morfessor https://www.lfd.uci.edu/~gohlke/pythonlibs/)
+Download and install the `pyicu`, `pycld2` and `Morfessor` whl packages for your OS/Python version from https://www.lfd.uci.edu/~gohlke/pythonlibs/#pyicu, https://www.lfd.uci.edu/~gohlke/pythonlibs/#pycld2 and Morfessor https://www.lfd.uci.edu/~gohlke/pythonlibs/
+
+## Run your own local server
+
+```bash
+git clone https://github.com/ffreemt/vector-search
+cd vector-search
+pip install -r requirements.txt
+streamlit run st_app.py
+```
+
+Point your browser then to [http://127.0.0.1:8501](http://127.0.0.1:8501)
+
+## For Developers
+
+`vector_search` can be used to conduct similarity search of other types of vectors such as image as long as the `embed` method is appropriately implemented. The vectors in the `data` directory and `fecth_embed` are implemented via some document embedding for text.
 
 ## Final Note
 
