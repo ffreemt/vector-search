@@ -172,7 +172,7 @@ def main():  # pylint: disable=too-many-locals
         "芳芳日记",
     ]
     book_dir = Path("texts").resolve()  # noqa
-    book_files = [
+    _ = [
         "catcher-in-the-rye-boll-de.txt",
         "catcher-in-the-rye-en.txt",
         "catcher-in-the-rye-shixianrong-zh.txt",
@@ -180,7 +180,10 @@ def main():  # pylint: disable=too-many-locals
         "fangfang-en.txt",
         "fangfang-zh.txt",
     ]
-    book_files = [*Path("texts").glob("*.txt")]
+    book_files = [Path("texts") / elm for elm in _]
+    # book_files = [*Path("texts").glob("*.txt")]
+
+    assert len(book_titles) == len(book_files)
     book_dict = dict(
         zip(book_titles, book_files)
     )
@@ -206,12 +209,12 @@ def main():  # pylint: disable=too-many-locals
         return None
 
     st.info(books_selected)
-    files_selected = [book_dict[elm] for elm in books_selected]
+    files_selected = [book_dict.get(elm) for elm in books_selected if book_dict.get(elm)]
     files_stem = [elm.stem for elm in files_selected]
-    
+
     st.write("Files selected:")
     st.info(files_stem)
-    
+
     # ['catcher-in-the-rye-shixianrong-zh', 'catcher-in-the-rye-sunzhongxu-zh']
 
     token_files = [Path("data") / (elm + ".lzma") for elm in files_stem]
