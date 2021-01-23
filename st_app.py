@@ -244,7 +244,7 @@ def main():  # pylint: disable=too-many-locals
     st.info("sents")
     st.write(sents)
 
-    if not []:
+    if not sents:
         return None
     try:
         _ = vector_search(sents, tokens, encoded, index_=index_)
