@@ -245,11 +245,13 @@ def main():  # pylint: disable=too-many-locals
     st.write(sents)
 
     if not sents:
+        back_cover()
         return None
     try:
         _ = vector_search(sents, tokens, encoded, index_=index_)
     except Exception as exc:
         st.error(str(exc))
+        back_cover()
         return None
 
     # _
