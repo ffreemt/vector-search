@@ -138,5 +138,6 @@ dmypy.json
 cython_debug/
 *.bat
 joblib_cache
+vector_search/joblibcache
 
 *.swp
